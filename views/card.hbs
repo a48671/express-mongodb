@@ -1,0 +1,24 @@
+<h1>Card</h1>
+
+<div class="card__wrapper">
+    {{#if courses.length}}
+        <div class="card__list">
+            {{#each courses}}
+                <div class="card__item">
+                    <img src="{{image}}" alt="{{title}}" class="card__img">
+                    <h3 class="card__title">{{title}}</h3>
+                    <p class="card__count">{{count}} шт.</p>
+                    <p class="price count__price">{{price}}</p>
+                    <button class="btn btm-small js-card-delete-course" data-id="{{id}}" data-csrf="{{@root.csrf}}">Delete</button>
+                </div>
+            {{/each}}
+        </div>
+        <div class="card__total price big">{{total}}</div>
+        <form action="/orders" method="post">
+            <input type="hidden" name="_csrf" value="{{csrf}}">
+            <button class="btn">Make to order</button>
+        </form>
+    {{else}}
+            <p>Card empty</p>
+    {{/if}}
+</div>

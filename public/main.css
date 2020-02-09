@@ -1,0 +1,88 @@
+.course {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.course__img {
+    display: block;
+    max-width: 100%;
+}
+
+.price.big {
+    font-size: 32px;
+}
+
+.card-action.controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card__list {
+    display: block;
+    margin-bottom: 30px;
+}
+.card__item {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+    border-bottom: 1px solid #aeaeae;
+    padding-bottom: 20px;
+}
+
+.card__img {
+    display: block;
+    width: 100px;
+}
+
+.card__title {
+    font-size: 24px;
+    padding-left: 20px;
+    width: 300px;
+}
+
+.card__count {
+    font-size: 24px;
+    width: 100px;
+}
+
+.card__total {
+    font-size: 24px;
+    text-align: right;
+}
+
+.count__price {
+    font-size: 24px;
+    width: 300px;
+    text-align: right;
+}
+
+.edit-form {
+    margin-bottom: 20px;
+}
+
+.card__item-date {
+    font-size: 12px;
+}
+
+.auth {
+    margin-top: 30px;
+}
+
+.auth__error {
+    margin: 30px 0;
+    text-align: center;
+    color: red;
+}
+
+.auth__link {
+    display: block;
+    margin: 10px 0;
+    text-align: center;
+}

@@ -1,0 +1,25 @@
+<h1>My orders</h1>
+
+<div class="card__wrapper">
+    {{#if orders.length}}
+        {{#each orders}}
+            {{#if courses.length}}
+                <div class="card__list">
+                    {{#each courses}}
+                        <div class="card__item">
+                            <img src="{{course.image}}" alt="{{course.title}}" class="card__img">
+                            <h3 class="card__title">{{course.title}}</h3>
+                            <p class="card__count">{{count}} шт.</p>
+                            <p class="price count__price">{{course.price}}</p>
+                            <button class="btn btm-small" data-id="{{course.id}}">Delete</button>
+                        </div>
+                    {{/each}}
+                    <div class="card__item-date date">{{date}}</div>
+                </div>
+                <div class="card__total price big">{{total}}</div>
+            {{/if}}
+        {{/each}}
+    {{else}}
+        <p>Empty</p>
+    {{/if}}
+</div>
