@@ -36,7 +36,10 @@
         </div>
         <div id="registration" class="col s6 offset-s3">
             <h3>Registration</h3>
-            <form action="/auth/registration" method="POST">
+            {{#if error}}
+                <div class="auth__error">{{error}}</div>
+            {{/if}}
+            <form action="/auth/registration" method="POST" novalidate>
                 <input type="hidden" name="_csrf" value="{{csrf}}">
                 <div class="row">
                     <div class="input-field col s12">

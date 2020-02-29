@@ -1,4 +1,5 @@
 const nodemailer = require('nodemailer');
+const { PASS_EMAIL } = require('../keys');
 
 async  function sendMail({email, html, title}) {
     const transporter = nodemailer.createTransport({
@@ -7,7 +8,7 @@ async  function sendMail({email, html, title}) {
         secure: true, // true for 465, false for other ports
         auth: {
             user: 'a48671@yandex.ru',
-            pass: 'GrandLimit1984'
+            pass: PASS_EMAIL
         }
     });
 
