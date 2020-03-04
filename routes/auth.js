@@ -5,7 +5,7 @@ const crypto = require('crypto');
 const { validationResult } = require('express-validator/check');
 const sendmail = require('../halpers/sendmail');
 const { BASE_URL } = require('../keys');
-const { registerValidators } = require('../utils/validators')
+const { registerValidators, loginValidators } = require('../utils/validators')
 
 const router = new Router();
 
@@ -15,9 +15,14 @@ router.get('/login', (req, res) => {
     });
 });
 
-router.post('/login', async (req, res) => {
+router.post('/login', loginValidators, async (req, res) => {
     const { email, password } = req.body;
     try {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            req.flash('error', errors.array()[0].msg);
+            return res.status(422).redirect('/auth/login');
+        }
         const candidate = await User.findOne({email});
         if (candidate) {
             const areSame = await bcrypt.compare(password, candidate.password);
@@ -43,7 +48,7 @@ router.post('/login', async (req, res) => {
 
 router.get('/logout', (req, res) => {
     req.session.destroy(() => {
-        res.redirect('/auth');
+        res.redirect('/auth/login');
     });
 });
 
@@ -56,12 +61,7 @@ router.post('/registration', registerValidators, async (req, res) => {
             return res.status(422).redirect('/auth/login#registration');
         }
 
-        const candidate = await User.findOne({email});
         const password = await bcrypt.hash(pass, 10);
-        if (candidate) {
-            req.flash('error', 'User already exists');
-            return res.redirect('/auth/login');
-        }
         const user = new User({email, name, password, card: { items: []}});
         await user.save();
         res.redirect('/');

@@ -1,10 +1,14 @@
 <h1>{{ title }}</h1>
 
-<form action="/add-course" method="POST">
+{{#if error}}
+    <div class="auth__error">{{error}}</div>
+{{/if}}
+
+<form action="/add-course" method="POST" novalidate>
     <input type="hidden" name="_csrf" value="{{csrf}}">
     <div class="row">
         <div class="input-field col s6">
-            <input placeholder="Name" name="title" id="name" type="text" class="validate" required>
+            <input placeholder="Name" name="title" id="name" type="text" class="validate" required value="{{data.title}}">
             <label for="name">Name</label>
             <span class="helper-text" data-error="Input Name"></span>
         </div>
@@ -12,7 +16,7 @@
 
     <div class="row">
         <div class="input-field col s6">
-            <input placeholder="Price" name="price" id="price" type="number" class="validate" required>
+            <input placeholder="Price" name="price" id="price" type="number" class="validate" required value="{{data.price}}"/>
             <label for="name">Price</label>
             <span class="helper-text" data-error="Input price"></span>
         </div>
@@ -20,7 +24,7 @@
 
     <div class="row">
         <div class="input-field col s6">
-            <input placeholder="Image" name="image" id="image" type="text" class="validate" required>
+            <input placeholder="Image" name="image" id="image" type="text" class="validate" required value="{{data.image}}"/>
             <label for="image">Url image</label>
             <span class="helper-text" data-error="Input url image"></span>
         </div>

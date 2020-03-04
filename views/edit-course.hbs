@@ -1,5 +1,9 @@
 <h1>{{ title }}</h1>
 
+{{#if error}}
+    <div class="auth__error">{{error}}</div>
+{{/if}}
+
 <form action="/courses/edit" method="POST" class="edit-form">
     <input type="hidden" name="_csrf" value="{{csrf}}">
     <div class="row">
